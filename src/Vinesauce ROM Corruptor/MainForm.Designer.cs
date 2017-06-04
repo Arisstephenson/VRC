@@ -79,6 +79,9 @@ namespace Vinesauce_ROM_Corruptor
             this.checkBox_TextReplacementEnable = new System.Windows.Forms.CheckBox();
             this.button_Run = new System.Windows.Forms.Button();
             this.groupBox_ByteCorruption = new System.Windows.Forms.GroupBox();
+            this.button_MultiplyByteHelp = new System.Windows.Forms.Button();
+            this.textBox_MultiplyByte = new System.Windows.Forms.TextBox();
+            this.radioButton_MultiplyByX = new System.Windows.Forms.RadioButton();
             this.button_EnableNESCPUJamProtectionHelp = new System.Windows.Forms.Button();
             this.button_ReplaceByteXwithYHelp = new System.Windows.Forms.Button();
             this.textBox_ReplaceByteXwithYByteY = new System.Windows.Forms.TextBox();
@@ -145,10 +148,13 @@ namespace Vinesauce_ROM_Corruptor
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.checkBox_EnableByteBomb = new System.Windows.Forms.CheckBox();
+            this.textBox_BombRadiusX = new System.Windows.Forms.TextBox();
+            this.button_EnableByteBombHelp = new System.Windows.Forms.Button();
             this.groupBox_FileSelection.SuspendLayout();
             this.groupBox_EmulatorSelection.SuspendLayout();
             this.groupBox_TextReplace.SuspendLayout();
@@ -161,9 +167,9 @@ namespace Vinesauce_ROM_Corruptor
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_RomDirectoryBrowse
@@ -492,6 +498,12 @@ namespace Vinesauce_ROM_Corruptor
             // 
             // groupBox_ByteCorruption
             // 
+            this.groupBox_ByteCorruption.Controls.Add(this.button_EnableByteBombHelp);
+            this.groupBox_ByteCorruption.Controls.Add(this.textBox_BombRadiusX);
+            this.groupBox_ByteCorruption.Controls.Add(this.checkBox_EnableByteBomb);
+            this.groupBox_ByteCorruption.Controls.Add(this.button_MultiplyByteHelp);
+            this.groupBox_ByteCorruption.Controls.Add(this.textBox_MultiplyByte);
+            this.groupBox_ByteCorruption.Controls.Add(this.radioButton_MultiplyByX);
             this.groupBox_ByteCorruption.Controls.Add(this.button_EnableNESCPUJamProtectionHelp);
             this.groupBox_ByteCorruption.Controls.Add(this.button_ReplaceByteXwithYHelp);
             this.groupBox_ByteCorruption.Controls.Add(this.textBox_ReplaceByteXwithYByteY);
@@ -536,10 +548,44 @@ namespace Vinesauce_ROM_Corruptor
             this.groupBox_ByteCorruption.TabStop = false;
             this.groupBox_ByteCorruption.Text = "Byte Corruption";
             // 
+            // button_MultiplyByteHelp
+            // 
+            this.button_MultiplyByteHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_MultiplyByteHelp.Location = new System.Drawing.Point(188, 169);
+            this.button_MultiplyByteHelp.Name = "button_MultiplyByteHelp";
+            this.button_MultiplyByteHelp.Size = new System.Drawing.Size(26, 23);
+            this.button_MultiplyByteHelp.TabIndex = 47;
+            this.button_MultiplyByteHelp.Text = "?";
+            this.button_MultiplyByteHelp.UseVisualStyleBackColor = true;
+            this.button_MultiplyByteHelp.Click += new System.EventHandler(this.button_MultiplyByteHelp_Click);
+            // 
+            // textBox_MultiplyByte
+            // 
+            this.textBox_MultiplyByte.Enabled = false;
+            this.textBox_MultiplyByte.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_MultiplyByte.Location = new System.Drawing.Point(95, 169);
+            this.textBox_MultiplyByte.Name = "textBox_MultiplyByte";
+            this.textBox_MultiplyByte.Size = new System.Drawing.Size(68, 20);
+            this.textBox_MultiplyByte.TabIndex = 46;
+            this.textBox_MultiplyByte.Text = "0";
+            this.textBox_MultiplyByte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // radioButton_MultiplyByX
+            // 
+            this.radioButton_MultiplyByX.AutoSize = true;
+            this.radioButton_MultiplyByX.Enabled = false;
+            this.radioButton_MultiplyByX.Location = new System.Drawing.Point(8, 170);
+            this.radioButton_MultiplyByX.Name = "radioButton_MultiplyByX";
+            this.radioButton_MultiplyByX.Size = new System.Drawing.Size(85, 17);
+            this.radioButton_MultiplyByX.TabIndex = 45;
+            this.radioButton_MultiplyByX.TabStop = true;
+            this.radioButton_MultiplyByX.Text = "Multiply by";
+            this.radioButton_MultiplyByX.UseVisualStyleBackColor = true;
+            // 
             // button_EnableNESCPUJamProtectionHelp
             // 
             this.button_EnableNESCPUJamProtectionHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_EnableNESCPUJamProtectionHelp.Location = new System.Drawing.Point(220, 221);
+            this.button_EnableNESCPUJamProtectionHelp.Location = new System.Drawing.Point(220, 250);
             this.button_EnableNESCPUJamProtectionHelp.Name = "button_EnableNESCPUJamProtectionHelp";
             this.button_EnableNESCPUJamProtectionHelp.Size = new System.Drawing.Size(26, 23);
             this.button_EnableNESCPUJamProtectionHelp.TabIndex = 43;
@@ -550,7 +596,7 @@ namespace Vinesauce_ROM_Corruptor
             // button_ReplaceByteXwithYHelp
             // 
             this.button_ReplaceByteXwithYHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ReplaceByteXwithYHelp.Location = new System.Drawing.Point(220, 194);
+            this.button_ReplaceByteXwithYHelp.Location = new System.Drawing.Point(220, 219);
             this.button_ReplaceByteXwithYHelp.Name = "button_ReplaceByteXwithYHelp";
             this.button_ReplaceByteXwithYHelp.Size = new System.Drawing.Size(26, 23);
             this.button_ReplaceByteXwithYHelp.TabIndex = 44;
@@ -562,7 +608,7 @@ namespace Vinesauce_ROM_Corruptor
             // 
             this.textBox_ReplaceByteXwithYByteY.Enabled = false;
             this.textBox_ReplaceByteXwithYByteY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_ReplaceByteXwithYByteY.Location = new System.Drawing.Point(171, 196);
+            this.textBox_ReplaceByteXwithYByteY.Location = new System.Drawing.Point(171, 221);
             this.textBox_ReplaceByteXwithYByteY.Name = "textBox_ReplaceByteXwithYByteY";
             this.textBox_ReplaceByteXwithYByteY.Size = new System.Drawing.Size(43, 20);
             this.textBox_ReplaceByteXwithYByteY.TabIndex = 43;
@@ -573,7 +619,7 @@ namespace Vinesauce_ROM_Corruptor
             // 
             this.label_ReplaceByteXwithY.AutoSize = true;
             this.label_ReplaceByteXwithY.Enabled = false;
-            this.label_ReplaceByteXwithY.Location = new System.Drawing.Point(135, 199);
+            this.label_ReplaceByteXwithY.Location = new System.Drawing.Point(135, 224);
             this.label_ReplaceByteXwithY.Name = "label_ReplaceByteXwithY";
             this.label_ReplaceByteXwithY.Size = new System.Drawing.Size(30, 13);
             this.label_ReplaceByteXwithY.TabIndex = 42;
@@ -584,7 +630,7 @@ namespace Vinesauce_ROM_Corruptor
             this.checkBox_EnableNESCPUJamProtection.AutoSize = true;
             this.checkBox_EnableNESCPUJamProtection.Enabled = false;
             this.checkBox_EnableNESCPUJamProtection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_EnableNESCPUJamProtection.Location = new System.Drawing.Point(6, 225);
+            this.checkBox_EnableNESCPUJamProtection.Location = new System.Drawing.Point(8, 254);
             this.checkBox_EnableNESCPUJamProtection.Name = "checkBox_EnableNESCPUJamProtection";
             this.checkBox_EnableNESCPUJamProtection.Size = new System.Drawing.Size(211, 17);
             this.checkBox_EnableNESCPUJamProtection.TabIndex = 40;
@@ -595,7 +641,7 @@ namespace Vinesauce_ROM_Corruptor
             // 
             this.textBox_ReplaceByteXwithYByteX.Enabled = false;
             this.textBox_ReplaceByteXwithYByteX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_ReplaceByteXwithYByteX.Location = new System.Drawing.Point(86, 196);
+            this.textBox_ReplaceByteXwithYByteX.Location = new System.Drawing.Point(86, 221);
             this.textBox_ReplaceByteXwithYByteX.Name = "textBox_ReplaceByteXwithYByteX";
             this.textBox_ReplaceByteXwithYByteX.Size = new System.Drawing.Size(43, 20);
             this.textBox_ReplaceByteXwithYByteX.TabIndex = 41;
@@ -606,7 +652,7 @@ namespace Vinesauce_ROM_Corruptor
             // 
             this.radioButton_ReplaceByteXwithY.AutoSize = true;
             this.radioButton_ReplaceByteXwithY.Enabled = false;
-            this.radioButton_ReplaceByteXwithY.Location = new System.Drawing.Point(8, 197);
+            this.radioButton_ReplaceByteXwithY.Location = new System.Drawing.Point(8, 222);
             this.radioButton_ReplaceByteXwithY.Name = "radioButton_ReplaceByteXwithY";
             this.radioButton_ReplaceByteXwithY.Size = new System.Drawing.Size(72, 17);
             this.radioButton_ReplaceByteXwithY.TabIndex = 40;
@@ -617,7 +663,7 @@ namespace Vinesauce_ROM_Corruptor
             // button_ShiftRightXBytesHelp
             // 
             this.button_ShiftRightXBytesHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ShiftRightXBytesHelp.Location = new System.Drawing.Point(188, 168);
+            this.button_ShiftRightXBytesHelp.Location = new System.Drawing.Point(188, 195);
             this.button_ShiftRightXBytesHelp.Name = "button_ShiftRightXBytesHelp";
             this.button_ShiftRightXBytesHelp.Size = new System.Drawing.Size(26, 23);
             this.button_ShiftRightXBytesHelp.TabIndex = 39;
@@ -629,7 +675,7 @@ namespace Vinesauce_ROM_Corruptor
             // 
             this.label_ShiftRightXBytes.AutoSize = true;
             this.label_ShiftRightXBytes.Enabled = false;
-            this.label_ShiftRightXBytes.Location = new System.Drawing.Point(135, 173);
+            this.label_ShiftRightXBytes.Location = new System.Drawing.Point(131, 200);
             this.label_ShiftRightXBytes.Name = "label_ShiftRightXBytes";
             this.label_ShiftRightXBytes.Size = new System.Drawing.Size(38, 13);
             this.label_ShiftRightXBytes.TabIndex = 38;
@@ -639,7 +685,7 @@ namespace Vinesauce_ROM_Corruptor
             // 
             this.textBox_ShiftRightXBytes.Enabled = false;
             this.textBox_ShiftRightXBytes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_ShiftRightXBytes.Location = new System.Drawing.Point(99, 170);
+            this.textBox_ShiftRightXBytes.Location = new System.Drawing.Point(95, 195);
             this.textBox_ShiftRightXBytes.Name = "textBox_ShiftRightXBytes";
             this.textBox_ShiftRightXBytes.Size = new System.Drawing.Size(30, 20);
             this.textBox_ShiftRightXBytes.TabIndex = 37;
@@ -650,7 +696,7 @@ namespace Vinesauce_ROM_Corruptor
             // 
             this.radioButton_ShiftRightXBytes.AutoSize = true;
             this.radioButton_ShiftRightXBytes.Enabled = false;
-            this.radioButton_ShiftRightXBytes.Location = new System.Drawing.Point(8, 171);
+            this.radioButton_ShiftRightXBytes.Location = new System.Drawing.Point(8, 196);
             this.radioButton_ShiftRightXBytes.Name = "radioButton_ShiftRightXBytes";
             this.radioButton_ShiftRightXBytes.Size = new System.Drawing.Size(85, 17);
             this.radioButton_ShiftRightXBytes.TabIndex = 36;
@@ -1280,18 +1326,6 @@ namespace Vinesauce_ROM_Corruptor
             this.tabPage2.Text = "Corruption";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.richTextBox1);
-            this.tabPage3.Controls.Add(this.pictureBox1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(372, 418);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "About";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.groupBox_TextReplace);
@@ -1313,6 +1347,18 @@ namespace Vinesauce_ROM_Corruptor
             this.tabPage5.Text = "Color";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.richTextBox1);
+            this.tabPage3.Controls.Add(this.pictureBox1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(372, 418);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "About";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(6, 128);
@@ -1322,6 +1368,39 @@ namespace Vinesauce_ROM_Corruptor
             this.richTextBox1.Size = new System.Drawing.Size(360, 284);
             this.richTextBox1.TabIndex = 40;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            // 
+            // checkBox_EnableByteBomb
+            // 
+            this.checkBox_EnableByteBomb.AutoSize = true;
+            this.checkBox_EnableByteBomb.Enabled = false;
+            this.checkBox_EnableByteBomb.Location = new System.Drawing.Point(8, 281);
+            this.checkBox_EnableByteBomb.Name = "checkBox_EnableByteBomb";
+            this.checkBox_EnableByteBomb.Size = new System.Drawing.Size(200, 17);
+            this.checkBox_EnableByteBomb.TabIndex = 48;
+            this.checkBox_EnableByteBomb.Text = "Bomb every byte with radius of";
+            this.checkBox_EnableByteBomb.UseVisualStyleBackColor = true;
+            // 
+            // textBox_BombRadiusX
+            // 
+            this.textBox_BombRadiusX.Enabled = false;
+            this.textBox_BombRadiusX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_BombRadiusX.Location = new System.Drawing.Point(208, 279);
+            this.textBox_BombRadiusX.Name = "textBox_BombRadiusX";
+            this.textBox_BombRadiusX.Size = new System.Drawing.Size(36, 20);
+            this.textBox_BombRadiusX.TabIndex = 49;
+            this.textBox_BombRadiusX.Text = "0";
+            this.textBox_BombRadiusX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // button_EnableByteBombHelp
+            // 
+            this.button_EnableByteBombHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_EnableByteBombHelp.Location = new System.Drawing.Point(252, 277);
+            this.button_EnableByteBombHelp.Name = "button_EnableByteBombHelp";
+            this.button_EnableByteBombHelp.Size = new System.Drawing.Size(26, 23);
+            this.button_EnableByteBombHelp.TabIndex = 50;
+            this.button_EnableByteBombHelp.Text = "?";
+            this.button_EnableByteBombHelp.UseVisualStyleBackColor = true;
+            this.button_EnableByteBombHelp.Click += new System.EventHandler(this.button_EnableByteBombHelp_Click);
             // 
             // MainForm
             // 
@@ -1363,9 +1442,9 @@ namespace Vinesauce_ROM_Corruptor
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1473,6 +1552,12 @@ namespace Vinesauce_ROM_Corruptor
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button button_MultiplyByteHelp;
+        private System.Windows.Forms.TextBox textBox_MultiplyByte;
+        private System.Windows.Forms.RadioButton radioButton_MultiplyByX;
+        private System.Windows.Forms.TextBox textBox_BombRadiusX;
+        private System.Windows.Forms.CheckBox checkBox_EnableByteBomb;
+        private System.Windows.Forms.Button button_EnableByteBombHelp;
     }
 }
 
