@@ -1,3 +1,13 @@
+Version 1.2.3
+
+-Added Multiply
+                This feature allows you to multiply bytes by a certain value
+                (or divide if the number is a fraction.)
+-Added Byte Bomb
+                Byte Bomb allows you to spread out corruption with each
+                corruption interval, with a custom radius.
+
+
 Version 1.2.2
 
 - UI Cleaned up for smaller screens.

@@ -79,6 +79,9 @@ namespace Vinesauce_ROM_Corruptor
             this.checkBox_TextReplacementEnable = new System.Windows.Forms.CheckBox();
             this.button_Run = new System.Windows.Forms.Button();
             this.groupBox_ByteCorruption = new System.Windows.Forms.GroupBox();
+            this.button_EnableByteBombHelp = new System.Windows.Forms.Button();
+            this.textBox_BombRadiusX = new System.Windows.Forms.TextBox();
+            this.checkBox_EnableByteBomb = new System.Windows.Forms.CheckBox();
             this.button_MultiplyByteHelp = new System.Windows.Forms.Button();
             this.textBox_MultiplyByte = new System.Windows.Forms.TextBox();
             this.radioButton_MultiplyByX = new System.Windows.Forms.RadioButton();
@@ -152,9 +155,6 @@ namespace Vinesauce_ROM_Corruptor
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.checkBox_EnableByteBomb = new System.Windows.Forms.CheckBox();
-            this.textBox_BombRadiusX = new System.Windows.Forms.TextBox();
-            this.button_EnableByteBombHelp = new System.Windows.Forms.Button();
             this.groupBox_FileSelection.SuspendLayout();
             this.groupBox_EmulatorSelection.SuspendLayout();
             this.groupBox_TextReplace.SuspendLayout();
@@ -547,6 +547,39 @@ namespace Vinesauce_ROM_Corruptor
             this.groupBox_ByteCorruption.TabIndex = 11;
             this.groupBox_ByteCorruption.TabStop = false;
             this.groupBox_ByteCorruption.Text = "Byte Corruption";
+            // 
+            // button_EnableByteBombHelp
+            // 
+            this.button_EnableByteBombHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_EnableByteBombHelp.Location = new System.Drawing.Point(252, 277);
+            this.button_EnableByteBombHelp.Name = "button_EnableByteBombHelp";
+            this.button_EnableByteBombHelp.Size = new System.Drawing.Size(26, 23);
+            this.button_EnableByteBombHelp.TabIndex = 50;
+            this.button_EnableByteBombHelp.Text = "?";
+            this.button_EnableByteBombHelp.UseVisualStyleBackColor = true;
+            this.button_EnableByteBombHelp.Click += new System.EventHandler(this.button_EnableByteBombHelp_Click);
+            // 
+            // textBox_BombRadiusX
+            // 
+            this.textBox_BombRadiusX.Enabled = false;
+            this.textBox_BombRadiusX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_BombRadiusX.Location = new System.Drawing.Point(208, 279);
+            this.textBox_BombRadiusX.Name = "textBox_BombRadiusX";
+            this.textBox_BombRadiusX.Size = new System.Drawing.Size(36, 20);
+            this.textBox_BombRadiusX.TabIndex = 49;
+            this.textBox_BombRadiusX.Text = "0";
+            this.textBox_BombRadiusX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // checkBox_EnableByteBomb
+            // 
+            this.checkBox_EnableByteBomb.AutoSize = true;
+            this.checkBox_EnableByteBomb.Enabled = false;
+            this.checkBox_EnableByteBomb.Location = new System.Drawing.Point(8, 281);
+            this.checkBox_EnableByteBomb.Name = "checkBox_EnableByteBomb";
+            this.checkBox_EnableByteBomb.Size = new System.Drawing.Size(200, 17);
+            this.checkBox_EnableByteBomb.TabIndex = 48;
+            this.checkBox_EnableByteBomb.Text = "Bomb every byte with radius of";
+            this.checkBox_EnableByteBomb.UseVisualStyleBackColor = true;
             // 
             // button_MultiplyByteHelp
             // 
@@ -1368,39 +1401,6 @@ namespace Vinesauce_ROM_Corruptor
             this.richTextBox1.Size = new System.Drawing.Size(360, 284);
             this.richTextBox1.TabIndex = 40;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
-            // 
-            // checkBox_EnableByteBomb
-            // 
-            this.checkBox_EnableByteBomb.AutoSize = true;
-            this.checkBox_EnableByteBomb.Enabled = false;
-            this.checkBox_EnableByteBomb.Location = new System.Drawing.Point(8, 281);
-            this.checkBox_EnableByteBomb.Name = "checkBox_EnableByteBomb";
-            this.checkBox_EnableByteBomb.Size = new System.Drawing.Size(200, 17);
-            this.checkBox_EnableByteBomb.TabIndex = 48;
-            this.checkBox_EnableByteBomb.Text = "Bomb every byte with radius of";
-            this.checkBox_EnableByteBomb.UseVisualStyleBackColor = true;
-            // 
-            // textBox_BombRadiusX
-            // 
-            this.textBox_BombRadiusX.Enabled = false;
-            this.textBox_BombRadiusX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_BombRadiusX.Location = new System.Drawing.Point(208, 279);
-            this.textBox_BombRadiusX.Name = "textBox_BombRadiusX";
-            this.textBox_BombRadiusX.Size = new System.Drawing.Size(36, 20);
-            this.textBox_BombRadiusX.TabIndex = 49;
-            this.textBox_BombRadiusX.Text = "0";
-            this.textBox_BombRadiusX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // button_EnableByteBombHelp
-            // 
-            this.button_EnableByteBombHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_EnableByteBombHelp.Location = new System.Drawing.Point(252, 277);
-            this.button_EnableByteBombHelp.Name = "button_EnableByteBombHelp";
-            this.button_EnableByteBombHelp.Size = new System.Drawing.Size(26, 23);
-            this.button_EnableByteBombHelp.TabIndex = 50;
-            this.button_EnableByteBombHelp.Text = "?";
-            this.button_EnableByteBombHelp.UseVisualStyleBackColor = true;
-            this.button_EnableByteBombHelp.Click += new System.EventHandler(this.button_EnableByteBombHelp_Click);
             // 
             // MainForm
             // 
