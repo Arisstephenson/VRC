@@ -372,6 +372,7 @@ namespace Vinesauce_ROM_Corruptor
             textBox_Increment.Enabled = checkBox_ByteCorruptionEnable.Checked;
             textBox_EveryNBytes.Enabled = checkBox_ByteCorruptionEnable.Checked;
             textBox_AddXToByte.Enabled = checkBox_ByteCorruptionEnable.Checked;
+            textBox_MultiplyByte.Enabled = checkBox_ByteCorruptionEnable.Checked;
             textBox_ShiftRightXBytes.Enabled = checkBox_ByteCorruptionEnable.Checked;
             textBox_ReplaceByteXwithYByteX.Enabled = checkBox_ByteCorruptionEnable.Checked;
             textBox_ReplaceByteXwithYByteY.Enabled = checkBox_ByteCorruptionEnable.Checked;
@@ -382,6 +383,7 @@ namespace Vinesauce_ROM_Corruptor
             button_RangeUp.Enabled = checkBox_ByteCorruptionEnable.Checked;
             button_RangeDown.Enabled = checkBox_ByteCorruptionEnable.Checked;
             radioButton_AddXToByte.Enabled = checkBox_ByteCorruptionEnable.Checked;
+            radioButton_MultiplyByX.Enabled = checkBox_ByteCorruptionEnable.Checked;
             radioButton_ShiftRightXBytes.Enabled = checkBox_ByteCorruptionEnable.Checked;
             radioButton_ReplaceByteXwithY.Enabled = checkBox_ByteCorruptionEnable.Checked;
             checkBox_AutoEnd.Enabled = checkBox_ByteCorruptionEnable.Checked;
@@ -392,6 +394,9 @@ namespace Vinesauce_ROM_Corruptor
             checkBox_ColorUseByteCorruptionRange.Checked = false;
             checkBox_EnableNESCPUJamProtection.Enabled = checkBox_ByteCorruptionEnable.Checked;
             checkBox_EnableNESCPUJamProtection.Checked = false;
+            checkBox_EnableByteBomb.Enabled = checkBox_ByteCorruptionEnable.Checked;
+            checkBox_EnableByteBomb.Checked = false;
+            textBox_BombRadiusX.Enabled = checkBox_ByteCorruptionEnable.Checked;
         }
 
         private void button_IncrementHelp_Click(object sender, EventArgs e)
@@ -733,6 +738,13 @@ namespace Vinesauce_ROM_Corruptor
             button_Run.Focus();
             MessageBox.Show("When this option is selected, this decimal value is added to each byte selected for corruption.",
                 "Add X to Byte Help");
+        }
+
+        private void button_MultiplyByteHelp_Click(object sender, EventArgs e)
+        {
+            button_Run.Focus();
+            MessageBox.Show("This option will multiply every byte by the specified value.", 
+                "Multiply Byte Help");
         }
 
         private void button_NESPaletteHelp_Click(object sender, EventArgs e)
@@ -1377,6 +1389,13 @@ namespace Vinesauce_ROM_Corruptor
                 "NES CPU Jam Protection Help");
         }
 
+        private void button_EnableByteBombHelp_Click(object sender, EventArgs e)
+        {
+            button_Run.Focus();
+            MessageBox.Show("This option will apply the selected corruption to all bytes in a radius of every corrupted byte. Make sure to use a low byte corruption interval and low radius to prevent freezing.",
+                "Byte Bomb Help");
+        }
+
         private void button_HotkeyHelp_Click(object sender, EventArgs e)
         {
             button_Run.Focus();
@@ -1641,6 +1660,27 @@ namespace Vinesauce_ROM_Corruptor
                 return null;
             }
 
+            double MultiplyByteByX;
+            try
+            {
+                MultiplyByteByX = Math.Abs(Convert.ToDouble(textBox_MultiplyByte.Text));
+            }
+            catch
+            {
+                MessageBox.Show("Invalid number to multiply with.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            int ByteBombRadius;
+            try
+            {
+                ByteBombRadius = Math.Abs(Convert.ToInt32(textBox_BombRadiusX.Text));
+            }
+            catch
+            {
+                MessageBox.Show("Invalid bomb radius.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
             // Limit the end byte.
             if (EndByte > (ROM.LongLength - 1))
             {
@@ -1651,12 +1691,13 @@ namespace Vinesauce_ROM_Corruptor
             Corruption.ByteCorruptionOptions ByteCorruptionOption = Corruption.ByteCorruptionOptions.AddXToByte;
             if (radioButton_ShiftRightXBytes.Checked) ByteCorruptionOption = Corruption.ByteCorruptionOptions.ShiftRightXBytes;
             else if (radioButton_ReplaceByteXwithY.Checked) ByteCorruptionOption = Corruption.ByteCorruptionOptions.ReplaceByteXwithY;
+            else if (radioButton_MultiplyByX.Checked) ByteCorruptionOption = Corruption.ByteCorruptionOptions.MultiplyByte;
 
             // Corrupt.
             ROM = Corruption.Run(ROM, checkBox_ByteCorruptionEnable.Checked, StartByte, EndByte, ByteCorruptionOption,
                 EveryNthByte, AddXtoByte, ShiftRightXBytes, ReplaceByteXwithYByteX, ReplaceByteXwithYByteY, checkBox_EnableNESCPUJamProtection.Checked,
                 checkBox_TextReplacementEnable.Checked, checkBox_TextUseByteCorruptionRange.Checked, textBox_TextToReplace.Text, textBox_ReplaceWith.Text, textBox_AnchorWords.Text,
-                checkBox_ColorReplacementEnable.Checked, checkBox_ColorUseByteCorruptionRange.Checked, textBox_ColorsToReplace.Text, textBox_ReplaceWithColors.Text);
+                checkBox_ColorReplacementEnable.Checked, checkBox_ColorUseByteCorruptionRange.Checked, textBox_ColorsToReplace.Text, textBox_ReplaceWithColors.Text, MultiplyByteByX, checkBox_EnableByteBomb.Checked, ByteBombRadius);
 
             return ROM;
         }
@@ -1714,5 +1755,7 @@ namespace Vinesauce_ROM_Corruptor
                 }
             }
         }
+
+
     }
 }

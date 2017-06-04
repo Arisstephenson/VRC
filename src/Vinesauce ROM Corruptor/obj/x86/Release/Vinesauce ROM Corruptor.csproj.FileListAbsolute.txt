@@ -1,0 +1,10 @@
+C:\Users\Ariss\Documents\GitHub\VRC\src\Vinesauce ROM Corruptor\bin\Release\Vinesauce ROM Corruptor.exe
+C:\Users\Ariss\Documents\GitHub\VRC\src\Vinesauce ROM Corruptor\bin\Release\Vinesauce ROM Corruptor.pdb
+C:\Users\Ariss\Documents\GitHub\VRC\src\Vinesauce ROM Corruptor\obj\x86\Release\Vinesauce_ROM_Corruptor.HotkeyForm.resources
+C:\Users\Ariss\Documents\GitHub\VRC\src\Vinesauce ROM Corruptor\obj\x86\Release\Vinesauce_ROM_Corruptor.MainForm.resources
+C:\Users\Ariss\Documents\GitHub\VRC\src\Vinesauce ROM Corruptor\obj\x86\Release\Vinesauce_ROM_Corruptor.Properties.Resources.resources
+C:\Users\Ariss\Documents\GitHub\VRC\src\Vinesauce ROM Corruptor\obj\x86\Release\Vinesauce_ROM_Corruptor.QueueForm.resources
+C:\Users\Ariss\Documents\GitHub\VRC\src\Vinesauce ROM Corruptor\obj\x86\Release\Vinesauce ROM Corruptor.csproj.GenerateResource.Cache
+C:\Users\Ariss\Documents\GitHub\VRC\src\Vinesauce ROM Corruptor\obj\x86\Release\Vinesauce ROM Corruptor.exe
+C:\Users\Ariss\Documents\GitHub\VRC\src\Vinesauce ROM Corruptor\obj\x86\Release\Vinesauce ROM Corruptor.pdb
+C:\Users\Ariss\Documents\GitHub\VRC\src\Vinesauce ROM Corruptor\obj\x86\Release\Vinesauce ROM Corruptor.csprojResolveAssemblyReference.cache

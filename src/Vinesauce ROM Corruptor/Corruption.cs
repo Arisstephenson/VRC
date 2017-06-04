@@ -32,7 +32,9 @@ namespace Vinesauce_ROM_Corruptor
         {
             AddXToByte,
             ShiftRightXBytes,
-            ReplaceByteXwithY
+            ReplaceByteXwithY,
+            MultiplyByte,
+            ByteBomb
         }
 
         static private List<byte> NESCPUJamProtection_Avoid = new List<byte>() { 0x48, 0x08, 0x68, 0x28, 0x78, 0x00, 0x02, 0x12, 0x22, 0x32, 0x42, 0x52, 0x62, 0x72, 0x92, 0xB2, 0xD2, 0xF2 };
@@ -44,7 +46,7 @@ namespace Vinesauce_ROM_Corruptor
             (byte[] ROM, bool ByteCorruptionEnable, long StartByte, long EndByte, ByteCorruptionOptions ByteCorruptionOption,
             uint EveryNthByte, int AddXtoByte, int ShiftRightXBytes, byte ReplaceByteXwithYByteX, byte ReplaceByteXwithYByteY, bool EnableNESCPUJamProtection,
             bool TextReplacementEnable, bool TextUseByteCorruptionRange, string RawTextToReplace, string RawReplaceWith, string RawAnchorWords,
-            bool ColorReplacementEnable, bool ColorUseByteCorruptionRange, string RawColorsToReplace, string RawReplaceWithColors)
+            bool ColorReplacementEnable, bool ColorUseByteCorruptionRange, string RawColorsToReplace, string RawReplaceWithColors, double MultiplyByteX, bool EnableByteBomb, int ByteBombRadius)
         {
             // Areas to not corrupt.
             List<long[]> ProtectedRegions = new List<long[]>();
@@ -469,8 +471,23 @@ namespace Vinesauce_ROM_Corruptor
                         // If the byte is not protected, corrupt it.
                         if (!Protected)
                         {
-                            int NewValue = (ROM[i] + AddXtoByte) % (Byte.MaxValue + 1);
-                            ROM[i] = (byte)NewValue;
+                            if (EnableByteBomb)
+                            {
+                                for (int r = -ByteBombRadius; r < ByteBombRadius; r++)
+                                {
+                                    if (!((i + r) >= StartByte && (i + r) <= EndByte))
+                                    {
+                                        continue;
+                                    }
+                                    int newValue = (ROM[i + r] + AddXtoByte) % (Byte.MaxValue + 1);
+                                    ROM[i + r] = (byte)newValue;
+                                }
+                            }
+                            else
+                            {
+                                int NewValue = (ROM[i] + AddXtoByte) % (Byte.MaxValue + 1);
+                                ROM[i] = (byte)NewValue;
+                            }
                         }
                     }
                 }
@@ -514,7 +531,25 @@ namespace Vinesauce_ROM_Corruptor
                             // If the byte is not protected, corrupt it.
                             if (!Protected)
                             {
-                                ROM[j] = ROM[i];
+                                if (EnableByteBomb)
+                                {
+                                    for (int r = -ByteBombRadius; r < ByteBombRadius; r++)
+                                    {
+                                        if (!((i + r) >= StartByte && (i + r + ShiftRightXBytes) <= EndByte))
+                                        {
+                                            continue;
+                                        }
+                                        long t = i + r + ShiftRightXBytes;
+                                        if (t >= StartByte && t <= EndByte)
+                                        {
+                                            ROM[i + r] = ROM[t];
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    ROM[j] = ROM[i];
+                                }
                             }
                         }
                     }
@@ -542,7 +577,81 @@ namespace Vinesauce_ROM_Corruptor
                             // If the byte is not protected, corrupt it.
                             if (!Protected)
                             {
-                                ROM[i] = ReplaceByteXwithYByteY;
+                                if (EnableByteBomb)
+                                {
+                                    for (int r = -ByteBombRadius; r < ByteBombRadius; r++)
+                                    {
+                                        if (!((i + r) >= StartByte && (i + r) <= EndByte))
+                                        {
+                                            continue;
+                                        }
+                                        if (ROM[i + r] == ReplaceByteXwithYByteX)
+                                        {
+                                            ROM[i + r] = ReplaceByteXwithYByteY;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    ROM[i] = ReplaceByteXwithYByteY;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (ByteCorruptionOption == ByteCorruptionOptions.MultiplyByte && MultiplyByteX != 1)
+                {
+                    for (long i = StartByte + EveryNthByte; i <= EndByte; i = i + EveryNthByte)
+                    {
+                        // If the byte is protected.
+                        bool Protected = false;
+
+                        // Check if the byte is protected.
+                        foreach (long[] ProtectedRegion in ProtectedRegions)
+                        {
+                            if (i >= ProtectedRegion[0] && i <= ProtectedRegion[1])
+                            {
+                                // Yes, its protected.
+                                Protected = true;
+                                break;
+                            }
+                        }
+
+                        // Do NES CPU jam protection if desired.
+                        if (EnableNESCPUJamProtection)
+                        {
+                            if (!Protected && i >= 2)
+                            {
+                                if (NESCPUJamProtection_Avoid.Contains((byte)((ROM[i] + AddXtoByte) % (Byte.MaxValue + 1)))
+                                    || NESCPUJamProtection_Protect_1.Contains(ROM[i])
+                                    || NESCPUJamProtection_Protect_2.Contains(ROM[i - 1])
+                                    || NESCPUJamProtection_Protect_3.Contains(ROM[i - 2]))
+                                {
+                                    Protected = true;
+                                }
+                            }
+                        }
+
+                        // If the byte is not protected, corrupt it.
+                        if (!Protected)
+                        {
+                            if(EnableByteBomb)
+                            {
+                                for (int r = -ByteBombRadius; r < ByteBombRadius; r++)
+                                {
+                                    if(!((i + r) >= StartByte && (i + r) <= EndByte))
+                                    {
+                                        continue;
+                                    }
+                                    int newValue = (int)(ROM[i + r] * MultiplyByteX) % (Byte.MaxValue + 1);
+                                    ROM[i + r] = (byte)newValue;
+                                }
+                            }
+                            else
+                            {
+                                int NewValue = (int)(ROM[i] * MultiplyByteX) % (Byte.MaxValue + 1);
+                                ROM[i] = (byte)NewValue;
                             }
                         }
                     }

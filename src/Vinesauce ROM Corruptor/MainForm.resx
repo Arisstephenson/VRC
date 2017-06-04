@@ -220,13 +220,22 @@
 </value>
   </data>
   <data name="richTextBox1.Text" xml:space="preserve">
-    <value>Version 1.2.2
+    <value>Version 1.2.3
 
 The Vinesauce ROM Corruptor is a program that allows you to change the bytes of any file by tweaking some simple settings.
 
 Its main use is corrupting NES ROM files for that glitchy, fun effect, but since it works on any file it can be used to corrupt any kind of ROM or game data file.
 
 -CHANGES-
+
+Version 1.2.3
+
+-Added Multiply
+                This feature allows you to multiply bytes by a certain value
+                (or divide if the number is a fraction.)
+-Added Byte Bomb
+                Byte Bomb allows you to spread out corruption with each
+                corruption interval, with a custom radius.
 
 Version 1.2.2
 
